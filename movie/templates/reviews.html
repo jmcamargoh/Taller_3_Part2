@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>My Movies</title>
+        <title>My Reviews</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     </head>
 
@@ -12,34 +12,20 @@
 
         {% block container %}
         <div class="container">
-
-            <form action="">
-                <div class="mb-3">
-                    <label for="searchMovie" class="form-label">
-                        Busque alguna película:
-                    </label>
-                    <input type="text" class="form-control" name="searchMovie" />
-                </div>
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </form>
-        
-            <p>Buscando por {{ searchTerm }}</p>
-            <br />
+            <h2>Reseñas!</h2>
+            <p>En esta sección podrás encontrar las últimas reseñas de películas: </p>
 
             <div class="row row-cols-1 row-cols-md-3 g-4 g-lg-4">
-                {% for movie in movies %}
-                <div v-for="movie in movies" class="col">
-                    <div class="card" style="background-color: #FF8E40;">
-                        <img class="card-img-top" src="{{ movie.image.url }}" />
+                {% for review in reviews %}
+                <div v-for="review in reviews" class="col">
+                    <div class="card flex-row" style="background-color: #FF8E40;">
+                        
                         <div class="card-body">
-                                <h5 class="card-title fw-bold">{{ movie.title }}</h5>
+                                <h5 class="card-title fw-bold">{{ review.title_review }}</h5>
                             </a>
-                            <p class="card-text">{{ movie.description }}</p>
-                            {% if movie.url %}
-                            <a href="{{ movie.url }}" class="btn btn-primary">
-                                Movie Link
-                            </a>
-                            {% endif %}
+                            <p class="card-text"> <h6>Por: {{ review.author }} - Perfil: <img class="card-img-top" src="{{ review.image_review.url }}" style="max-width: 4rem; max-height: 4rem; width: 100%;"/></h6></p>
+                            <p class="card-text">{{ review.text_review }}</p>
+                            <p class="card-text"><h6>Publicado el {{ review.creation_date }}</h6></p>
                         </div>
                     </div>
                 </div>
@@ -48,13 +34,10 @@
             <br />
             <br />
         </div>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
         {% endblock %}
     </body>
 </html>
-
-
-
